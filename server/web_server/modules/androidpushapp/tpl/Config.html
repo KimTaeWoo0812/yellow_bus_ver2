@@ -1,0 +1,183 @@
+<load target="css/ncenter_admin.css" />
+<include target="header.html" />
+
+<form ruleset="insertConfig" action="./" method="post" class="x_form-horizontal" id="fo_androidpushapp">
+	<input type="hidden" name="module" value="androidpushapp" />
+	<input type="hidden" name="act" value="procAndroidpushappAdminInsertConfig" />
+		<div class="x_control-group">
+			<label class="x_control-label"><span class="x_label x_label-important">주의!</span>푸시 동작여부</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" id="use_y" name="use" value="Y" checked="checked"|cond="$config->use == 'Y'" /> 동작
+				</label>
+
+				<label class="x_inline">
+					<input type="radio" id="use_n" name="use" value="N" checked="checked"|cond="$config->use == 'N'" /> 동작 안 함
+				</label>				
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">앱 버전</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" name="sort_v" value="W" checked="checked"|cond="$config->sort_v == 'W'" /> 웹뷰버전
+				</label>
+
+				<label class="x_inline">
+					<input type="radio" name="sort_v" value="B" checked="checked"|cond="$config->sort_v == 'B'" /> 웹브라우저 호출 버전
+				</label>
+				
+				<label class="x_inline">
+					<input type="radio" name="sort_v" value="WB" checked="checked"|cond="$config->sort_v == 'WB'" /> 둘 다 사용
+				</label>
+			</div>
+		</div>
+		
+
+		<div class="x_control-group">
+			<label class="x_control-label">API_Key(웹뷰버전을 사용할 경우)</label>
+			<div class="x_controls">
+				<input type="text" name="api_key" value="{$config->api_key}" />
+				<p class="x_help-block">google GCM에서 받은 API KEY를 적습니다.</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">API_Key(웹브라우저호출 버전을 사용할 경우)</label>
+			<div class="x_controls">
+				<input type="text" name="api_key2" value="{$config->api_key2}" />
+				<p class="x_help-block">google GCM에서 받은 API KEY를 적습니다.</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">웹브라우저 호출 버전 패키지명</label>
+			<div class="x_controls">
+				<input type="text" name="package" value="{$config->package}" />
+				<p class="x_help-block">웹브라우저 호출 버전을 사용할 경우 웹브라우저 호출 버전 앱의 패키지명을 적어주세요. 둘 다 사용하는 경우도 웹브라우저 호출 버전 앱의 패키지명을 적어주세요.</p>
+			</div>
+		</div>
+
+		<div class="x_control-group">
+			<label class="x_control-label">동기화 시에 모든 새글,새댓글 알림 설정 유지 여부</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" name="change_a" value="Y" checked="checked"|cond="$config->change_a == 'Y'" /> 유지
+				</label>
+				<label class="x_inline">
+					<input type="radio" name="change_a" value="N" checked="checked"|cond="$config->change_a == 'N'" /> 해제
+				</label>
+			</div>
+		</div>		
+
+		<div class="x_control-group">
+			<label class="x_control-label">새글 푸시 동작여부</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" name="use_d" value="Y" checked="checked"|cond="$config->use_d == 'Y'" /> 동작
+				</label>
+
+				<label class="x_inline">
+					<input type="radio" name="use_d" value="N" checked="checked"|cond="$config->use_d == 'N'" /> 동작 안 함
+				</label>				
+			</div>
+		</div>
+
+		<div class="x_control-group">
+			<label class="x_control-label">새 댓글 푸시 동작여부</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" name="use_c" value="Y" checked="checked"|cond="$config->use_c == 'Y'" /> 동작
+				</label>
+
+				<label class="x_inline">
+					<input type="radio" name="use_c" value="N" checked="checked"|cond="$config->use_c == 'N'" /> 동작 안 함
+				</label>				
+			</div>
+		</div>
+
+		<div class="x_control-group">
+			<label class="x_control-label">쪽지 푸시 동작여부</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" name="use_m" value="Y" checked="checked"|cond="$config->use_m == 'Y'" /> 동작
+				</label>
+
+				<label class="x_inline">
+					<input type="radio" name="use_m" value="N" checked="checked"|cond="$config->use_m == 'N'" /> 동작 안 함
+				</label>				
+			</div>
+		</div>
+
+
+		
+		<div class="x_control-group">
+			<label class="x_control-label">푸시 동작을 사용하지 않을 게시판</label>
+			<div class="x_controls">
+				<p class="x_help-block">선택한 모듈에서는 새글이나 새댓글이 올라와도 푸시기능을 하지 않습니다.</p>
+				<div loop="$mid_list => $mid, $item">
+					<label cond="$item->module =='board'||$item->module =='resource'">
+						<input type="checkbox" value="{$item->module_srl}" name="no_use_module_srls[]" checked="checked"|cond="in_array($item->module_srl, $config->no_use_module_srls)"  onClick="aaa(this);"/>
+						<strong>{$item->browser_title}</strong> ({$item->mid})
+					</label>
+				</div>
+			</div>
+		</div>	
+		
+		<br>
+
+		<div class="x_control-group">
+			<label class="x_control-label"> 관리회원 또는 관리자에게만 푸시 알림이 되도록 할 게시판</label>
+			<div class="x_controls">
+				<p class="x_help-block">게시판을 선택하시려면 먼저 위의 "푸시 동작을 사용하지 않을 게시판" 설정의 해당 게시판 체크를 해제해주세요.</p>
+				<div loop="$mid_list => $mid, $item">
+					<label cond="$item->module =='board'||$item->module =='resource'">
+						<input type="checkbox" value="{$item->module_srl}" name="only_admin_push_module_srls[]" checked="checked"|cond="in_array($item->module_srl, $config->only_admin_push_module_srls)" disabled="false"|cond="in_array($item->module_srl, $config->no_use_module_srls)"/>
+						<strong>{$item->browser_title}</strong> ({$item->mid})
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="x_clearfix btnArea">
+			<div class="x_pull-right">
+				<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">시험용 푸시 알림 생성</label>
+			<div class="x_controls">
+				<label><input type="button" name="dummy" onClick="doDummyPushDataInsert();" class="x_btn" value="더미 데이터 생성"> <br><br>모듈 및 모바일 테스트를 위한 시험용 알림 생성 / 앱 설치 후 모바일 페이지에서 관리자로 로그인하신 다음 "현재 ID로 동기화" 버튼을 누르신 후에 이 버튼을 눌러주세요. </label>
+			</div>
+		</div>
+</form>
+
+<script type="text/javascript">
+
+function aaa(checkedObj){
+	var obj = document.getElementsByName("only_admin_push_module_srls[]");
+	if(checkedObj.checked)
+	{
+		for(var i=0; i< obj.length; i++){
+			if(obj[i].value == checkedObj.value){
+				obj[i].checked = false;
+				obj[i].disabled = true;
+			}
+		}
+	}else{
+		for(var i=0; i< obj.length; i++){
+			if(obj[i].value == checkedObj.value){				
+				obj[i].disabled = false;
+			}
+		}
+	}
+}
+
+</script>
+
+<script type="text/javascript">
+
+function doDummyPushDataInsert()
+{
+	jQuery.exec_json('androidpushapp.procAndroidpushappAdminInsertPushData', {}, function completeGetDummyPushInfo(ret_obj){alert(ret_obj.message)});
+}
+
+</script>

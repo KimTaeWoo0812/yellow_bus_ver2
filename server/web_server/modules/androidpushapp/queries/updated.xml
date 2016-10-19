@@ -1,0 +1,13 @@
+<query id="updated" action="update">
+    <tables>
+        <table name="androidpushapp_gcmregid" />
+    </tables>
+	<columns>		
+		<column name="last_login" var="last_login" notnull="notnull" /> 
+		<column name="deviceId" var="deviceId" notnull="notnull" />		
+    </columns>
+	<conditions> 
+		<condition operation="equal" column="reg_id" var="reg_id" notnull="notnull" />	
+		<condition operation="equal" column="sort" var="sort" notnull="notnull" pipe="and" />	
+	</conditions>
+</query>

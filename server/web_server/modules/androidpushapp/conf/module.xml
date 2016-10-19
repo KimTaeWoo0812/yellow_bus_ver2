@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants />
+	<permissions />
+	<actions>
+		<action name="dispAndroidpushappAdminConfig" type="view" admin_index="true" menu_name="androidpushapp" menu_index="true" />		
+		<action name="dispAndroidpushappAdminList" type="view" />
+		<action name="dispAndroidpushappAdminRegId" type="view" />
+		<action name="procAndroidpushappAdminInsertConfig" type="controller" ruleset="insertConfig" />
+		<action name="procAndroidpushappAdminDelete" type="controller" />
+		<action name="procAndroidpushappAdminInsertPushData" type="controller" />
+		<action name="procAndroidpushappFiledown" type="controller" method="GET|POST" />	
+		<action name="procAndroidpushappRegIn" type="controller" ruleset="insertDevice" method="GET|POST"/>
+		<action name="procAndroidpushappSync" type="controller" ruleset="updateDevice" method="GET|POST"/>		
+		<action name="procAndroidpushappSyncSetting" type="controller" ruleset="insertSetting"/>
+		<action name="procAndroidpushappPush" type="controller" ruleset="sendMessage"/>
+	</actions>
+	<menus>
+		<menu name="androidpushapp" type="all">
+			<title xml:lang="ko">안드로이드 푸시 앱</title>			
+		</menu>
+	</menus>
+</module>

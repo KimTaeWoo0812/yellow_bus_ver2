@@ -1,0 +1,37 @@
+<!--@if($colorset=="PINK")-->
+<load target="css/mlogin_PINK.css" />
+<!--@elseif($colorset=="PURPLE")-->
+<load target="css/mlogin_PURPLE.css" />
+<!--@elseif($colorset=="JADE")-->
+<load target="css/mlogin_JADE.css" />
+<!--@else-->
+<load target="css/mlogin_PURPLE.css" />
+<!--@end-->
+
+<div class="bd">
+<div class="title"><center>{$app_name}</center></div>
+<div class="top"><br><br>{$top_text}<br><br></div>
+<div class="cent">
+
+	<form action="{getUrl('','act','procMemberLogin')}" method="post" class="ff" ruleset="@login">
+		<input type="hidden" name="success_return_url" value="{htmlspecialchars(getRequestUriByServerEnviroment())}" />
+		<input type="hidden" name="act" value="procMemberLogin" />	
+		<input type="hidden" name="keep_signed" value="Y"/>
+		<ul><li>
+			<label for="id" cond="$member_config->identifier != 'email_address'">{$lang->user_id}</label>
+			<input name="user_id" id="id" type="text" required cond="$member_config->identifier != 'email_address'"   value=""/>
+			<label for="id" cond="$member_config->identifier == 'email_address'">{$lang->email_address}</label>
+			<input name="user_id" id="id" type="email" required cond="$member_config->identifier == 'email_address'"   value=""/>
+			</li>
+			<li><label for="pw">{$lang->password}</label><input name="password" type="password" id="pw" value="" /></li>
+		</ul>		
+		<div class="bna">			
+			<div class="fr"><button type="submit" class="bn dark">{$lang->cmd_login}</button></div>
+		</div>
+		
+	</form>
+	</div>
+	<div class="bottom"><br><br><br><br><br><button type="submit" class="bn dark" onclick="javascript:window.myJs_ins.callAndroid_ins();">로그인하지 않고 시작하기</button><br><br>지금 로그인하지 않아도 나중에 알림설정을 통해서<br><br>따로 로그인하여 동기화 하실 수 있습니다.</div>
+</div>
+
+

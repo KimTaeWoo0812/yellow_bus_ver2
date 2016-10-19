@@ -1,0 +1,11 @@
+<query id="upgrade" action="update">
+    <tables>
+        <table name="androidpushapp_gcmregid" />
+    </tables>
+	<columns>				
+		<column name="sync" default="Y"/>
+    </columns>
+	<conditions> 
+		<condition operation="in" column="member_srl" var="member_srls" notnull="notnull" />		
+	</conditions>
+</query>

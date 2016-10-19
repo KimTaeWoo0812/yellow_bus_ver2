@@ -1,0 +1,9 @@
+<query id="getgcm" action="select">
+	<tables>
+		<table name="androidpushapp_gcmregid" />
+	</tables>
+
+	<columns>
+		<column name="*" />
+	</columns>	
+</query>

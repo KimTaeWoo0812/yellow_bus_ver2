@@ -1,0 +1,15 @@
+<div class="x_page-header">
+	<h1>안드로이드 푸시 앱 <!--@if($act=='dispAndroidpushappAdminConfig')-->v{$androidpushapp_module_info->version}<!--@end--></h1>
+</div>
+
+<div class="header4">
+	<ul class="x_nav x_nav-tabs">
+		<li class="x_active"|cond="$act=='dispAndroidpushappAdminConfig'"><a href="{getUrl('act','dispAndroidpushappAdminConfig','filter_type','')}">환경설정</a></li>
+		<li class="x_active"|cond="$act=='dispAndroidpushappAdminList'"><a href="{getUrl('act','dispAndroidpushappAdminList','filter_type','')}">푸시 결과값 목록</a></li>
+		<li class="x_active"|cond="$act=='dispAndroidpushappAdminRegId'"><a href="{getUrl('act','dispAndroidpushappAdminRegId','filter_type','')}">등록 기기 목록</a></li>
+	</ul>
+</div>
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>

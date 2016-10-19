@@ -1,0 +1,17 @@
+<query id="updateLast" action="update">
+    <tables>
+        <table name="androidpushapp_gcmregid" />
+    </tables>
+	<columns>		
+		<column name="last_login" var="last_login" notnull="notnull" /> 
+		<column name="reg_id" var="reg_id" notnull="notnull" />
+		<column name="member_srl" var="member_srl" />
+		<column name="sync" var="sync"/>
+		<column name="setting" var="setting"/> 		 
+		<column name="setting_board" var="setting_board"/>
+    </columns>
+	<conditions> 
+		<condition operation="equal" column="deviceId" var="deviceId" notnull="notnull" />	
+		<condition operation="equal" column="sort" var="sort" notnull="notnull" pipe="and" />	
+	</conditions>
+</query>

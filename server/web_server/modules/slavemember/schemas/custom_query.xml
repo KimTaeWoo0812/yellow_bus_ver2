@@ -1,0 +1,3 @@
+<table name="custom_query">
+    <column name="role" type="text" />
+</table>

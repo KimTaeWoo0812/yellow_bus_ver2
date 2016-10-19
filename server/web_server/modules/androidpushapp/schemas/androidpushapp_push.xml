@@ -1,0 +1,12 @@
+<table name="androidpushapp_push">
+	<column name="pushid" type="char" size="32" notnull="notnull" primary_key="primary_key" breif="푸시 ID" />	
+	
+	<column name="type" type="varchar" size="10" notnull="notnull" breif="이벤트 대상 타입" />
+	<column name="text" type="text" notnull="notnull" breif="결과값" />
+
+	<column name="target_browser" type="varchar" size="50" breif="브라우저 제목" />	
+	<column name="target_url" type="varchar" size="255" notnull="notnull" breif="링크 목적지 주소" />
+	<column name="target_title" type="varchar" size="255" notnull="notnull" breif="글/댓글 제목" />
+	
+	<column name="push_date" type="date" index="idx_push_date" />
+</table>

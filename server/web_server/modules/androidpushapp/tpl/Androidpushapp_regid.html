@@ -1,0 +1,225 @@
+<load target="js/push_admin_list.js" type="body" usecdn="true" />
+<include target="header.html" />
+
+<section class="section">
+<form action="" class="form" method="post">
+	<h1 class="h1">등록 기기 목록</h1>
+	
+		<div class="table even">		
+			<div class="cnb">				
+				<a href="{getUrl('filter_type', '', 'page', '', 'search_keyword', '', 'search_target', '', 'g_srl','')}" class="active"|cond="$filter_type==''">전체</a>
+				|
+				<a href="{getUrl('filter_type', 'sync_member', 'page', '', 'search_keyword', '', 'search_target', '', 'g_srl','')}" class="active"|cond="$filter_type=='sync_member'">{$lang->sync_member}</a>
+				|
+				<a href="{getUrl('filter_type', 'not_sync_member', 'page', '', 'search_keyword', '', 'search_target', '', 'g_srl','')}" class="active"|cond="$filter_type=='not_sync_member'">{$lang->not_sync_member}</a><!--@foreach($group_list as $key => $val)-->
+				|
+				<a href="{getUrl('filter_type', 'member_group', 'g_srl',$val->group_srl,'page', '', 'search_keyword', '', 'search_target', '')}" class="active"|cond="$filter_type=='member_group' && $g_srl==$val->group_srl">{$val->title}</a><!--@end-->
+		
+
+			</div>
+
+			<p class="x_well x_well-small" cond="!$androidpushapp_regid">결과값이 없습니다.</p>
+			
+			<block cond="$androidpushapp_regid">
+
+			<table width="100%" border="1" cellspacing="0" id="memberList" class="_memberList">
+				<caption>
+				{$filter_type_title}({$total_count_list})
+					<span class="side">					
+						<span class="btn"><a href="#listManager" data-value="send" class="modalAnchor _member x_btn">{$lang->selected_manage}...</a></span>
+					</span>
+				</caption>
+				<thead>
+					<tr>
+						<th scope="col" class="nowr">웹뷰/웹브라우저</th>											
+						<th scope="col" class="nowr">이름</th>
+						<th scope="col" class="nowr">닉네임</th>						
+						<th scope="col" class="nowr">email</th>	
+						<th scope="col" class="nowr">Reg_id</th>
+						<th scope="col" class="nowr">등록날짜</th>
+						<th scope="col" class="nowr">최근앱사용날짜</th>
+						<th scope="col">
+							<input type="checkbox" title="Check All" data-name="user" />
+						</th>
+										
+					</tr>
+				</thead>
+				<tbody>
+					<!--@foreach($androidpushapp_regid as $no => $val)-->
+					{@
+						$oMemberModel = getModel('member');
+						$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+						$reg_id_cut = cut_str($val->reg_id, 20)."...";
+						if($val->sort == 'W') $string_sort = "웹뷰";
+						if($val->sort == 'B') $string_sort = "웹브라우저";
+					}
+					<tr>
+						<td class="nowr">{$string_sort}</td>						
+						
+						<td class="nowr">{$member_info->user_name}</td>
+						<td class="nowr">{$member_info->nick_name}</td>						
+						<td class="nowr">						
+							<span class="masked">{getEncodeEmailAddress($member_info->email_address)}</span>
+						</td>
+						<td class="nowr">{$reg_id_cut}</td>
+						<td class="nowr">{zdate($val->regdate, 'Y-m-d')}</td>
+						<td class="nowr">{zdate($val->last_login, 'Y-m-d')}</td>
+						<td><input type="checkbox" name="user" value='{$val->reg_id."\t".$val->sort."\t".$member_info->user_name."\t".$member_info->nick_name}' /></td>
+						
+					</tr>
+					<!--@endforeach-->
+				</tbody>
+			</table>
+			<div class="btnArea">
+				<span class="side">								
+					<span class="btn"><a href="#listManager" data-value="send" class="modalAnchor _member x_btn">{$lang->selected_manage}...</a></span>			
+				</span>
+			</div>
+		
+
+			<div class="x_pagination">
+				<ul>
+					<li><a href="{getUrl('page','')}" class="prevEnd">{$lang->first_page}</a></li>
+					<!--@while($page_no = $page_navigation->getNextPage())-->
+						<!--@if($page == $page_no)-->
+							<li class="x_active"><a href="{getUrl('page',$page_no)}">{$page_no}</a></li>
+						<!--@else-->
+							<li><a href="{getUrl('page',$page_no)}">{$page_no}</a></li>
+						<!--@endif-->
+					<!--@end-->
+					<li><a href="{getUrl('page',$page_navigation->last_page)}" class="nextEnd">{$lang->last_page}</a></li>
+				</ul>
+			</div>
+		</block>
+	</div>
+</form>
+</section>
+<form action="./" method="get" class="search center x_input-append" no-error-return-url="true">
+	<input type="hidden" name="module" value="{$module}" />
+	<select name="search_target" style="margin-right:4px" title="검색">
+		<option value="user_name" selected="selected"|cond="$search_target==user_name">이름</option>
+		<option value="user_id" selected="selected"|cond="$search_target==user_id">아이디</option>
+		<option value="email_address" selected="selected"|cond="$search_target==email_address">이메일</option>
+		<option value="nick_name" selected="selected"|cond="$search_target==nick_name">닉네임</option>
+	</select>
+	<input type="search" name="search_keyword" value="{htmlspecialchars($search_keyword, ENT_COMPAT | ENT_HTML401, 'UTF-8', false)}" style="width:140px">
+	<button class="x_btn x_btn-inverse" type="submit">{$lang->cmd_search}</button>
+	<a class="x_btn" href="{getUrl('', 'module', 'admin', 'act', 'dispAndroidpushappAdminRegId', 'page', $page)}">{$lang->cmd_cancel}</a>
+</form>
+
+<section class="x_modal" id="listManager" cond="$androidpushapp_regid">
+	<form action="./" ruleset="sendMessage" class="fg form" method="post">
+	<input type="hidden" name="module" value="androidpushapp" />
+	<input type="hidden" name="act" value="procAndroidpushappPush" />
+	<input type="hidden" name="success_return_url" value="{getUrl('act', $act)}" />
+	<div class="x_modal-header">
+			<h1>선택한 기기에 푸시 알림 보내기</h1>
+		</div>
+		<div class="x_modal-body">
+		
+		
+			<table class="x_table x_table-striped x_table-hover">
+				<thead>
+					<tr>
+						<th scope="col">이름</th>
+						<th scope="col">닉네임</th>
+						<th scope="col">Regid</th>						
+					</tr>
+				</thead>
+				<tbody id="popupBody">
+				</tbody>
+			</table>
+			<br><br><br>
+		
+			<p class="q"><label for="message">푸시 알림 보낼 메시지(짧게 써주세요.)</label></p>
+
+			<p>
+				푸시 알림 방식  : <input type="radio" id="use_d" name="use_d" value="Y" checked="checked" onclick = "div_OnOff(this.value);" />문서 번호로 푸시	
+				<input type="radio" id="use_d" name="use_d" value="N" onclick = "div_OnOff(this.value);"/>메시지 직접 입력				
+			</p>
+
+			<div id="link_document">
+				문서 document_srl : <input type=text id="link_document_srl" name="link_document_srl"> 
+			</div>
+
+			<div id="write_M" style = "display:none;">
+
+			<p>
+				제목 : <input type=text id="title" name="title">
+			</p>
+			<p>
+				내용 : <input type=text id="message" name="message" style="width:400px;">
+			</p>
+			<p>
+				클릭시 이동할 외부 링크 : <input type=text id="link" name="link"> 외부링크의 경우만 사용하세요.
+			</p>
+			</div>
+
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			
+			
+			 
+		</div>
+		<div class="x_modal-footer">
+			<button type="button" class="x_btn x_pull-left" data-hide="#listManager">{$lang->cmd_close}</button>
+			<span class="x_btn-group x_pull-right">
+				<button type="submit" name="type"  onClick="Success();" class="x_btn x_btn-inverse">보내기...</button>
+			</span>
+		</div>		
+	</form>
+	
+</section>
+
+<script>
+function div_OnOff(v){
+	 
+	if(v == "Y"){
+		document.getElementById('write_M').style.display = "none";
+		document.getElementById('link_document').style.display = "";
+	}else{
+		document.getElementById('write_M').style.display = "";
+		document.getElementById('link_document').style.display = "none";
+	}
+}
+</script>
+
+
+<script>
+jQuery(function($){
+	// Modal anchor activation
+	var $memberList = $('#memberList');
+	$memberList.find(':checkbox').change(function(){
+		var $modalAnchor = $('a[data-value]');
+		if($memberList.find('tbody :checked').length == 0){
+			$modalAnchor.removeAttr('href').addClass('x_disabled');
+		} else {
+			$modalAnchor.attr('href','#listManager').removeClass('x_disabled');
+		}
+	}).change();
+
+	// Modal anchor button action
+	$('a[data-value]').click(function(){
+		if($memberList.find(':checked').length != 0){
+			var $this = $(this);
+			var $moveTarget = $('._moveTarget');
+			var thisValue = $this.attr('data-value');
+			var thisText = $this.text();
+			$('#listManager').find('.x_modal-header ._sub').text(thisText).end().find('[type="submit"]').val(thisValue).text(thisText);
+			if(thisValue == 'delete'){
+				$moveTarget.hide().next().css('borderTopWidth','0');
+			} else {
+				$moveTarget.show().next().css('borderTopWidth','1px');
+			}
+		}
+	});
+});
+</script>
+
+<script type="text/javascript">
+
+function Success()
+{
+	alert( '푸시 알림 보내기 성공' );
+}
+
+</script>

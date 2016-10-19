@@ -1,0 +1,12 @@
+<query id="getAdminPushRegId3" action="select">
+	<tables>
+		<table name="androidpushapp_gcmregid" />
+	</tables>
+	<conditions> <condition operation="null" column="member_srl"/> </conditions>
+	<navigation>
+		<index default="regdate" var="sort_index" order="order_type" />
+		<list_count var="list_count" default="20" />
+		<page_count var="page_count" default="10" />
+		<page var="page" default="1" />
+	</navigation>
+</query>

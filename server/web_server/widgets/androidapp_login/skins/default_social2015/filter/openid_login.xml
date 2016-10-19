@@ -1,0 +1,7 @@
+<filter name="widget_oid_login" module="member" act="procMemberOpenIDLogin">
+    <form>
+        <node target="openid" required="true" />
+    </form>
+    <parameter />
+    <response />
+</filter>

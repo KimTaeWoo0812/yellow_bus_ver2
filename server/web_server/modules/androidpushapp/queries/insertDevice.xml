@@ -1,0 +1,13 @@
+<query id="insertDevice" action="insert">
+    <tables>
+        <table name="androidpushapp_gcmregid" />
+    </tables>
+	<columns>		
+		<column name="reg_id" var="reg_id" notnull="notnull" />
+		<column name="sort" var="sort" notnull="notnull" />
+		<column name="sync" var="sync" notnull="notnull" />
+		<column name="deviceId" var="deviceId" notnull="notnull" />
+		<column name="setting" var="setting" notnull="notnull" />		
+        <column name="regdate" var="regdate" notnull="notnull" />
+    </columns>
+</query>

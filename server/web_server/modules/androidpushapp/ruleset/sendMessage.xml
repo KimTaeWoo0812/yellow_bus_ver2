@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.5.0">
+<customrules />
+	<fields>
+		<field name="reg_idsw"/>
+		<field name="reg_idsb"/>
+		<field name="title" />
+		<field name="message" />
+		<field name="use_d" required="true" />
+	</fields>
+</ruleset>

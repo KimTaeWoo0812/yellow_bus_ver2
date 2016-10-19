@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+	<title xml:lang="ko">안드로이드 푸시 앱 연동 모듈</title>
+	<description xml:lang="ko">안드로이드 푸시 앱과 연동하는 모듈입니다.</description>
+	<version>2.0</version>
+	<date>2016-06-03</date>
+	<category>content</category>
+	<author link="http://xepushapp.com/">
+		<name xml:lang="ko">단희 아빠</name>
+	</author>
+</module>

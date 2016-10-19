@@ -1,0 +1,1 @@
+<?php if(!defined("__XE__"))exit;?>로그인하셈

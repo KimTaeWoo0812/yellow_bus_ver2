@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">The Bootstrap 회원 스킨</title>
+    <title xml:lang="en">The Bootstrap Member Skin</title>
+    <description xml:lang="ko">
+        The Bootstrap 테마 용 회원 스킨
+    </description>
+    <description xml:lang="en">
+    	Member skin for The Bootstrap Theme
+    </description>
+    <version>3.0</version>
+    <date>2012-11-16</date>
+
+    <author email_address="wincomi@me.com" link="http://www.wincomi.com">
+        <name xml:lang="ko">윈컴이</name>
+        <name xml:lang="en">Wincomi</name>
+    </author>
+    <colorset />
+</skin>

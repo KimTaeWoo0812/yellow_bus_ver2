@@ -1,0 +1,8 @@
+<query id="deleteAll" action="delete">
+	<tables>
+		<table name="androidpushapp_push" />
+	</tables>
+	<conditions>
+		<condition operation="below" column="push_date" var="old_date" />
+	</conditions>
+</query>

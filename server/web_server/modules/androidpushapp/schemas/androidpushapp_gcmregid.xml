@@ -1,0 +1,11 @@
+<table name="androidpushapp_gcmregid">	
+	<column name="reg_id" type="varchar" size="250" primary_key="primary_key" notnull="notnull" />
+	<column name="deviceId" type="varchar" size="250" default="none" notnull="notnull" />
+	<column name="member_srl" type="number" size="11" breif="회원번호" />
+	<column name="setting" type="text" />
+	<column name="setting_board" type="text" />
+	<column name="sync" type="char" size="1" default="N" notnull="notnull" />	
+	<column name="sort" type="char" size="1" default="W" notnull="notnull"/>
+	<column name="last_login" type="date" />
+	<column name="regdate" type="date" index="idx_regdate" />	
+</table>

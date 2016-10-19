@@ -1,0 +1,102 @@
+<load target="js/member_admin.js" />
+<!--%load_js_plugin("ui.datepicker")-->
+<script>
+	xe.lang.deleteProfileImage = '{$lang->msg_delete_extend_form}';
+	xe.lang.deleteImageMark = '{$lang->msg_delete_extend_form}';
+	xe.lang.deleteImageName = '{$lang->msg_delete_extend_form}';
+</script>
+<div class="x_page-header">
+	<h1 cond="$member_srl">{$lang->msg_update_member}</h1>
+	<h1 cond="!$member_srl">{$lang->msg_new_member}</h1>
+</div>
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/member/tpl/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<form action="./" class="x_form-horizontal" ruleset="insertAdminMember" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="module" value="member" />
+	<input type="hidden" name="act" value="procMemberAdminInsert" />
+	<input type="hidden" name="member_srl" value="{$member_srl}" />
+	<input type="hidden" name="signature" value="{htmlspecialchars($member_info->signature, ENT_COMPAT | ENT_HTML401, 'UTF-8', false)}" />
+	<input type="hidden" name="success_return_url" value="{getUrl('act', $act)}" cond="$member_srl" />
+	<input type="hidden" name="success_return_url" value="{getUrl('act', 'dispMemberAdminList')}" cond="!$member_srl" />
+	<input type="hidden" name="xe_validator_id" value="modules/member/tpl/1" />
+	<div cond="$member_srl" class="x_control-group">
+		<label class="x_control-label" for="identifierForm"><em style="color:red">*</em> {$identifierForm->title} <a class="x_icon-question-sign" href="./admin/help/index.html#UMAN_login_key" target="_blank">{$lang->help}</a></label>
+		<div class="x_controls">
+			<input type="hidden" name="{$identifierForm->name}" value="{$identifierForm->value}" />
+			<input id="identifierForm" type="email" name="{$identifierForm->name}" value="{$identifierForm->value}" disabled="disabled" />
+		</div>
+	</div>
+	<div cond="!$member_srl" class="x_control-group">
+		<label class="x_control-label" for="identifierForm"><em style="color:red">*</em> {$identifierForm->title} <a class="x_icon-question-sign" href="./admin/help/index.html#UMAN_login_key" target="_blank">{$lang->help}</a></label>
+		<div class="x_controls">
+			<input id="identifierForm" type="text" name="{$identifierForm->name}" value="" />
+		</div>
+	</div>
+	<div cond="$member_srl" class="x_control-group">
+		<label class="x_control-label" for="password"><em style="color:red">*</em> {$lang->password}</label>
+		<div class="x_controls">
+			<input type="hidden" name="password" value="{$member_info->password}" />
+			<input id="password" type="text" name="reset_password" value="" />
+		</div>
+	</div>
+	<div cond="!$member_srl" class="x_control-group">
+		<label class="x_control-label" for="password"><em style="color:red">*</em> {$lang->password}</label>
+		<div class="x_controls">
+			<input id="password" type="text" name="password" value="" />
+		</div>
+	</div>
+	<div loop="$formTags=>$formTag" class="x_control-group">
+		<label class="x_control-label" for="{$formTag->name}">{$formTag->title}</label>
+		<div class="x_controls" cond="$formTag->name != 'signature'">{$formTag->inputTag}</div>
+		<div class="x_controls" cond="$formTag->name =='signature'">{$editor}</div>
+	</div>
+<style scoped>
+.xpress-editor>#smart_content,
+.xpress-editor>#smart_content>.tool{clear:none}
+</style>
+
+	<div class="x_control-group">
+		<label class="x_control-label" for="description">{$lang->description}</label>
+		<div class="x_controls">
+			<textarea name="description" id="description" rows="2" cols="42" style="vertical-align:top">{$member_info->description}</textarea>
+			<span class="x_help-inline">{$lang->about_member_description}</span>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label">{$lang->member_group}</label>
+		<div class="x_controls">
+			<label for="group_{$key}" class="x_inline" loop="$group_list => $key,$val">
+				<input disabled type="checkbox" name="group_srl_list[]" value="{$key}" id="group_{$key}" checked="checked"|cond="$member_info->group_list[$key]" />
+				{$val->title}
+			</label>
+			
+			<select disabled="disabled" name="selected_group_srl" style="margin-right:4px">
+				<option value="0">{$lang->all_group}</option>
+				<!--@foreach($group_list as $key => $val)-->
+				<option value="{$val->group_srl}" <!--@if($selected_group_srl==$val->group_srl)-->selected="selected"<!--@end-->>{$val->title}</option>
+				<!--@end-->
+			</select>
+			
+		</div>
+	</div>
+	<div class="x_clearfix btnArea">
+		<span class="x_pull-left" cond="$member_srl"><button class="x_btn" type="button" onclick="history.go(-1)">{$lang->cmd_cancel}</button></span>
+		<span class="x_pull-right"><input class="x_btn x_btn-primary" type="submit" value="{$lang->cmd_save}" /></span>
+	</div>
+</form>
+<script>
+(function($){
+    $(function(){
+        var option = { changeMonth: true, changeYear: true, gotoCurrent: false,yearRange:'-100:+10', dateFormat:'yy-mm-dd', onSelect:function(){
+            $(this).prev('input[type="hidden"]').val(this.value.replace(/-/g,""))}
+        };
+        $.extend(option,$.datepicker.regional['{$lang_type}']);
+        $(".inputDate").datepicker(option);
+		$(".dateRemover").click(function() {
+			$(this).prevAll('input').val('');
+			return false;
+		});
+    });
+})(jQuery);
+</script>

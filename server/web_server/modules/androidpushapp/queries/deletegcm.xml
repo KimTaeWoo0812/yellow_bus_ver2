@@ -1,0 +1,9 @@
+<query id="deletegcm" action="delete">
+	<tables>
+		<table name="androidpushapp_gcmregid" />
+	</tables>
+
+	<conditions>
+		<condition operation="equal" column="reg_id" var="reg_id" notnull="notnull" />		
+	</conditions>
+</query>

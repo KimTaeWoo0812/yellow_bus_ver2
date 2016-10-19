@@ -1,0 +1,15 @@
+[
+  {
+    "title": "All Day Event",
+    "start": "2016-07-10"
+  },
+  {
+    "title": "Long Day Event",
+    "start": "2016-07-13",
+    "end": "2015-07-15"
+  },
+  {
+    "title": "Birthday Party",
+    "start": "2015-07-17T07:00:00-05:00"
+  }
+]

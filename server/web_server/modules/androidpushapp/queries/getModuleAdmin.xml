@@ -1,0 +1,23 @@
+<query id="getModuleAdmin" action="select">
+    <tables>
+        <table name="androidpushapp_gcmregid" alias="gcm" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <query operation="equal" column="member_srl" alias="search">
+            <tables>
+                <table name="module_admins" alias="m" />
+            </tables>
+            <columns>
+                <column name="member_srl" alias="mem_srl" />
+            </columns>
+            <conditions>
+                <condition operation="equal" column="m.module_srl" var="module_srl" notnull="notnull" filter="number" />
+            </conditions>
+        </query>
+    </conditions>	
+</query>
+
+

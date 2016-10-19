@@ -1,0 +1,22 @@
+<query id="getAModuleGrant" action="select">
+    <tables>
+        <table name="member_group" alias="group" />
+    </tables>
+    <columns>
+        <column name="count(*)" alias="count"/>
+    </columns>
+    <conditions>
+        <query operation="equal" column="group_srl" alias="check">
+            <tables>
+                <table name="module_grants" alias="m" />
+            </tables>
+            <columns>
+                <column name="group_srl" alias="g_srl" />
+            </columns>
+            <conditions>
+                <condition operation="equal" column="m.module_srl" var="module_srl" />
+				<condition operation="equal" column="m.name" var="name" />
+            </conditions>
+        </query>
+    </conditions>	
+</query>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.computeering.newschoolbus">
+
+    <!-- GCM 퍼미션 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <permission android:name="net.computeering.newschoolbus.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="net.computeering.newschoolbus.permission.C2D_MESSAGE" />
+
+
+
+    <application
+        android:name=".NewSchoolListPackage.NewSchoolListAppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true">
+
+        <activity
+            android:name=".Xepushapp.Xepushapp_MainActivity_activity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:hardwareAccelerated="true" android:largeHeap="true">
+        </activity>
+
+        <activity
+            android:name=".Xepushapp.Xepushapp_Setting"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".Xepushapp.Xepushapp_Sendserver" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".SplashPackage.SplashActivity"
+            android:label="@string/app_name"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginPackage.LoginActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".SplashPackage.temp"
+            android:theme="@style/AppTheme.Dark" />
+
+        <activity
+            android:name=".MasterMainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".LoginPackage.SignupActivity"
+            android:theme="@style/AppTheme.Dark" />
+
+        <activity android:name=".NewSchoolListPackage.NewSchoolListMainActivity"
+            android:theme="@style/AppTheme.Dark"/>
+        <activity
+            android:name=".NewSchoolListPackage.NewSchoolListMasterMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SchoolManagePackage.SchoolMange_Activity" />
+        <activity android:name=".SchoolManagePackage.ViewMember_Activity" />
+        <activity
+            android:name=".SchoolManagePackage.ChooseCar_Activity"
+            android:theme="@style/AppTheme.Dark"/>
+        <activity android:name=".SchoolManagePackage.Map_Running_car_Activity" />
+        <activity android:name=".SchoolManagePackage.test" />
+
+        <!-- [START gcm_receiver] -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="net.computeering.newschoolbus.Xepushapp" />
+            </intent-filter>
+        </receiver>
+        <!-- [END gcm_receiver] -->
+
+        <!-- [START gcm_listener] -->
+        <service
+            android:name=".Xepushapp.Xepushapp_MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <!-- [END gcm_listener] -->
+        <!-- [START instanceId_listener] -->
+        <service
+            android:name=".Xepushapp.Xepushapp_MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <!-- [END instanceId_listener] -->
+        <service
+            android:name=".Xepushapp.Xepushapp_RegistrationIntentService"
+            android:exported="false">
+        </service>
+    </application>
+
+</manifest>

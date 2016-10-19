@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+    <title xml:lang="ko">안드로이드푸시앱연동 로그인 위젯</title>
+    <description xml:lang="ko">안드로이드푸시 앱 첫 화면 로그인 페이지입니다. 다른 용도로 사용불가합니다.</description>
+    <version>1.4</version>
+    <date>2015-09-03</date>
+
+    <author email_address="ubfspringx@naver.com" link="http://xepushapp.com/">
+        <name xml:lang="ko">단희아빠</name>
+    </author>
+    
+    <extra_vars>		
+		<var id="app_name" type="text">
+            <name xml:lang="ko">앱 명칭</name>
+		</var>
+		<var id="top_text" type="text">
+            <name xml:lang="ko">상단에 보일 텍스트</name>
+			<description xml:lang="ko">상단에 보일 텍스트를 선택해주세요. 소셜로그인 스킨에서는 입력해도 보이지 않습니다. 예) 로그인을 해주세요. 지금 로그인을 하시면 쪽지와 필요한 댓글만 알림받으실 수 있습니다.</description>
+		</var>
+		<var id="social_text" type="text">
+            <name xml:lang="ko">소셜로그인 버튼에 보일 텍스트</name>
+			<description xml:lang="ko">소셜로그인 스킨을 사용할 경우만 입력해주세요. 가능한 소셜만 다음과 같이 적어주시면 됩니다. 예) Naver|twitter|google|facebook </description>
+		</var>		
+	    
+    </extra_vars>
+</widget>

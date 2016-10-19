@@ -1,0 +1,30 @@
+<include target="./common_header.html" />
+<load target="filter/openid_login.xml" />
+<form ruleset="@login" action="./" method="post" id="fo_member_login" class="form-horizontal">
+	<input type="hidden" name="success_return_url" value="{getUrl('act', '')}" />
+	<input type="hidden" name="act" value="procMemberLogin" />
+	<fieldset>
+		<legend>{$lang->cmd_login}</legend>
+		<div class="control-group">
+			{@$member_config=MemberModel::getMemberConfig();$identifierForm->name=$member_config->identifier;}
+			<label for="uid" class="control-label"><!--@if($identifierForm->name=='email_address')-->{$lang->email}<!--@else-->{$lang->user_id}<!--@end--></label>
+			<div class="controls"><input type="<!--@if($identifierForm->name=='email_address')-->email<!--@else-->text<!--@end-->" name="user_id" id="uid" value="" placeholder="<!--@if($identifierForm->name=='email_address')-->{$lang->email}<!--@else-->{$lang->user_id}<!--@end-->" /></div>
+		</div>
+		<div class="control-group">
+			<label for="upw" class="control-label">{$lang->password}</label>
+			<div class="controls"><input type="password" name="password" id="upw" value="" placeholder="{$lang->password}"	 /></div>
+		</div>
+		<div class="control-group">
+			<label for="keepid_opt" class="control-label">{$lang->keep_signed}</label>
+			<div class="controls">
+				<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" class="popover-right" data-title="{$lang->keep_signed}" data-content="{$lang->about_keep_warning}" />
+			</div>
+		</div>
+		<div class="form-actions">
+			<input type="submit" value="{$lang->cmd_login}" class="btn btn-primary" />
+			<a href="{getUrl('act','dispMemberFindAccount')}" class="btn">{$lang->cmd_find_member_account}</a>
+			<a href="{getUrl('act','dispMemberSignUpForm')}" class="btn">{$lang->cmd_signup}</a>
+		</div>
+	</fieldset>
+</form>
+<include target="./common_footer.html" />

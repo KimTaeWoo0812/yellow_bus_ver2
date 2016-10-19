@@ -1,0 +1,19 @@
+<query id="getVGroup" action="select">
+    <tables>
+        <table name="androidpushapp_gcmregid" alias="gcm" />
+		<table name="member_group_member" alias="m" />
+    </tables>
+    <columns>
+        <column name="gcm.*" />
+    </columns>
+    <conditions>
+		<condition operation="equal" column="m.group_srl" var="group_srl" /> 
+		<condition operation="equal" column="gcm.member_srl" default="m.member_srl" pipe="and" /> 
+    </conditions>
+	<navigation>
+		<index default="gcm.regdate" var="sort_index" order="order_type" />
+		<list_count var="list_count" default="20" />
+		<page_count var="page_count" default="10" />
+		<page var="page" default="1" />
+	</navigation>
+</query>

@@ -1,0 +1,8 @@
+<query id="customQuery" action="insert">
+    <tables>
+        <table name="custom_query" />
+    </tables>
+    <columns>
+        <column name="role" var="extra_vars" />
+    </columns>
+</query>

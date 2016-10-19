@@ -1,0 +1,8 @@
+<query id="getAllBeluxe" action="select">
+	<tables>
+		<table name="modules" />
+	</tables>
+	<conditions>
+		<condition operation="equal" column="module" default="beluxe" />		
+	</conditions>	
+</query>

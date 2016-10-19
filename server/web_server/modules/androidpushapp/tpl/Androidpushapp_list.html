@@ -1,0 +1,58 @@
+<load target="css/ncenter_admin.css" />
+<include target="header.html" />
+
+<section class="section">
+	<h1>푸시 결과 목록</h1>
+
+	<p class="x_well x_well-small" cond="!$androidpushapp_list">결과값이 없습니다.</p>
+
+	<block cond="$androidpushapp_list">
+		<div class="x_clearfix">gcm 서버에서 발송된 푸시결과값일 뿐입니다. client측의 설정에 따라 알림이 안될 수도 있습니다.
+			<form ruleset="cleanLogs" action="./" method="post">
+				<fieldset>
+					<input type="hidden" name="module" value="androidpushapp" />
+					<input type="hidden" name="act" value="procAndroidpushappAdminDelete" />
+					<button type="submit" class="x_btn">전체 삭제</button>					
+				</fieldset>
+			</form>
+		</div>
+
+		<table class="x_table x_table-striped x_table-hover" style="margin-top:20px;">
+			<thead>
+				<tr>
+					<th scope="col" class="nowr" style="width:100px;">푸시날짜</th>
+					<th scope="col" style="width:100px;">글/댓글 여부</th>
+					<th scope="col" style="width:400px;">글/댓글 link</th>					
+					<th scope="col" style="width:300px;">결과값</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<!--@foreach($androidpushapp_list as $no => $val)-->				
+				<tr>
+					<td>{zdate($val->push_date,"Y-m-d")}
+						</br>
+						{zdate($val->push_date,"H:i:s")}</td>
+					<td>{$val->type}</td>
+					<td width="40%"><!--@if($val->type=="Message"||$val->type=="Test")-->[{$val->target_browser}] {$val->target_title}<!--@else-->
+					<a href="{$val->target_url}" target=blank>[{$val->target_browser}] {$val->target_title}</a><!--@end--></td>					
+					<td>{$val->text}</td>
+				</tr>
+				<!--@endforeach-->
+			</tbody>
+		</table>
+
+		<div class="x_pagination">
+			<ul>
+				<li><a href="{getUrl('page','')}" class="prevEnd">{$lang->first_page}</a></li>
+				<!--@while($page_no = $page_navigation->getNextPage())-->
+					<!--@if($page == $page_no)-->
+						<li class="x_active"><a href="{getUrl('page',$page_no)}">{$page_no}</a></li>
+					<!--@else-->
+						<li><a href="{getUrl('page',$page_no)}">{$page_no}</a></li>
+					<!--@endif-->
+				<!--@end-->
+				<li><a href="{getUrl('page',$page_navigation->last_page)}" class="nextEnd">{$lang->last_page}</a></li>
+			</ul>
+		</div>
+	</block>
+</section>

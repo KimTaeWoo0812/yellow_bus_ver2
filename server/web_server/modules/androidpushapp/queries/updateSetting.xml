@@ -1,0 +1,12 @@
+<query id="updateSetting" action="update">
+    <tables>
+        <table name="androidpushapp_gcmregid" />
+    </tables>
+	<columns>		
+		<column name="setting" var="setting"/> 
+		<column name="setting_board" var="setting_board"/>  
+    </columns>
+	<conditions> 
+		<condition operation="equal" column="reg_id" var="reg_id" notnull="notnull" />		
+	</conditions>
+</query>

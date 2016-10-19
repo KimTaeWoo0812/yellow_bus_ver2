@@ -1,0 +1,14 @@
+<query id="insertPush" action="insert">
+	<tables>
+		<table name="androidpushapp_push" />
+	</tables>
+	<columns>
+		<column name="pushid" var="pushid" notnull="notnull" />				
+		<column name="type" var="type" notnull="notnull" />		
+		<column name="target_browser" var="target_browser" />
+		<column name="target_title" var="target_title" notnull="notnull" />		
+		<column name="text" var="text" />		
+		<column name="target_url" var="target_url" notnull="notnull" />
+		<column name="push_date" var="push_date" />		
+	</columns>
+</query>

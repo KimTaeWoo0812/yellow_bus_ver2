@@ -1,0 +1,20 @@
+<include target="./common_header.html" />
+
+<form ruleset="modifyEmailAddress" class="form form-horizontal" action="./" method="post">
+	<input type="hidden" name="module" value="member" />
+	<input type="hidden" name="act" value="procMemberModifyEmailAddress" />
+	<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+	<fieldset>
+	<legend>{$lang->cmd_modify_member_email_address} <small>{$lang->about_modify_member_email_address}</small></legend>
+	<div class="control-group">
+		<label for="email_address" class="control-label">{$lang->email_address}</label>
+		<div class="controls">
+			<input type="text" id="email_address" name="email_address" value="" />
+		</div>
+	</div>
+	</fieldset>
+	<div class="form-actions">
+		<input type="submit" value="{$lang->cmd_send_auth_new_emaill_address}" class="btn btn-primary" />
+	</div>
+</form>
+<include target="./common_footer.html" />

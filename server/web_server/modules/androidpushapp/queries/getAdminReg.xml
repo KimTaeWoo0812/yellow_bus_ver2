@@ -1,0 +1,21 @@
+<query id="getAdminReg" action="select">
+    <tables>
+        <table name="androidpushapp_gcmregid" alias="gcm" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <query operation="equal" column="member_srl" alias="search">
+            <tables>
+                <table name="member" alias="m" />
+            </tables>
+            <columns>
+                <column name="member_srl" alias="mem_srl" />
+            </columns>
+            <conditions>
+                <condition operation="equal" column="m.is_admin" var="is_admin" notnull="notnull" />
+            </conditions>
+        </query>
+    </conditions>	
+</query>

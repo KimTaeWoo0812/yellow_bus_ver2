@@ -1,0 +1,11 @@
+<query id="getgcmbymem" action="select">
+    <tables>
+        <table name="androidpushapp_gcmregid" />
+    </tables>
+	<conditions>
+        <condition operation="equal" column="member_srl" var="member_srl" />
+    </conditions>
+    <columns>
+        <column name="*" />
+    </columns>
+</query>

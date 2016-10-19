@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "782170180004",
+    "project_id": "awspushapptest"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782170180004:android:5a64324b8ccdd637",
+        "android_client_info": {
+          "package_name": "net.computeering.newschoolbus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs4aF-XfwqYlHLmHpQXpnrLAyVuLoYDVQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

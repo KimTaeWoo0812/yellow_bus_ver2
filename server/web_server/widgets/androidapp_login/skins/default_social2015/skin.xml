@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title>로그인(회원가입 버튼, 소셜 로그인 포함)</title>
+    <description>
+        androidpushapp 모듈을 위해 member_defalt 로그인 폼을 수정 제작한 로그인 위젯입니다.
+    </description>
+    <version>1.2</version>
+    <date>2015-06-22</date>
+    <link></link>
+
+    <author link="http://xepushapp.com/">
+        <name>단희아빠</name>
+    </author>
+	<colorset>
+		<color name="PINK">
+			<title xml:lang="ko">PINK</title>
+		</color>
+		<color name="PURPLE">
+			<title xml:lang="ko">PURPLE</title>
+		</color>
+		<color name="JADE">
+			<title xml:lang="ko">JADE</title>
+		</color>
+	</colorset>
+</skin>

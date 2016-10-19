@@ -1,0 +1,30 @@
+<query id="getSearchReg" action="select">
+    <tables>
+        <table name="androidpushapp_gcmregid" alias="gcm" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <query operation="in" column="member_srl" alias="search">
+            <tables>
+                <table name="member" alias="m" />
+            </tables>
+            <columns>
+                <column name="member_srl" alias="mem_srl" />
+            </columns>
+            <conditions>
+                <condition operation="like" column="m.user_name" var="user_name" />
+				<condition operation="equal" column="m.user_id" var="user_id" />
+				<condition operation="like" column="m.email_address" var="email_address" />
+				<condition operation="like" column="m.nick_name" var="nick_name" />
+            </conditions>
+        </query>
+    </conditions>
+	<navigation>
+		<index default="regdate" var="sort_index" order="order_type" />
+		<list_count var="list_count" default="20" />
+		<page_count var="page_count" default="10" />
+		<page var="page" default="1" />
+	</navigation>
+</query> 

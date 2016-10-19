@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.5.0">
+<customrules>
+</customrules>
+<fields>
+<field name="email_address" required="true" rule="email"/>
+<field name="nick_name" required="true" length="2:20" />
+<field name="password"><if test="$act == 'procMemberInsert'" attr="required" value="true" /><if test="$act == 'procMemberInsert'" attr="length" value="4:20" /></field>
+<field name="password2"><if test="$act == 'procMemberInsert'" attr="required" value="true" /><if test="$act == 'procMemberInsert'" attr="equalto" value="password" /></field>
+<field name="find_account_question" required="true" />
+<field name="find_account_answer" required="true" length=":250" />
+<field name="mypermission" required="true" />
+</fields>
+</ruleset>

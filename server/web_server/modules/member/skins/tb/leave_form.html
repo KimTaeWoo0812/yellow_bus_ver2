@@ -1,0 +1,23 @@
+<include target="./common_header.html" />
+<form ruleset="leaveMember" id="fo_insert_member" class="form form-horizontal" action="./" method="post">
+	<input type="hidden" name="module" value="member" />
+	<input type="hidden" name="act" value="procMemberLeave" />
+    <input type="hidden" name="mid" value="{$mid}" />
+    <input type="hidden" name="document_srl" value="{$document_srl}" />
+    <input type="hidden" name="page" value="{$page}" />
+	<fieldset>
+		<legend>{$member_title = $lang->msg_leave_member}</legend>
+		<div class="control-group">
+			<label class="control-label">{Context::getLang($identifier)}</label>
+			<div class="controls"><input type="text" value="{$formValue}" disabled /></div>
+		</div>
+		<div class="control-group">
+			<label for="cpw" class="control-label">{$lang->password}</label>
+			<div class="controls"><input type="password" name="password" id="cpw" /></div>
+		</div>
+		<div class="form-actions">
+			<input type="submit" value="{$lang->cmd_leave}" class="btn btn-primary" />
+		</div>
+	</fieldset>
+</form>
+<include target="./common_footer.html" />

@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.computeering.newschoolbus.MasterMainActivity">
+    <item
+        android:id="@+id/action_driveing_car"
+        android:orderInCategory="100"
+        android:title="차량 운행"
+        app:showAsAction="never" />
+
+    <!--
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="앱 관리"
+        app:showAsAction="never" />
+    -->
+
+    <item
+        android:id="@+id/action_logout_in_mastermainactivity"
+        android:orderInCategory="100"
+        android:title="로그아웃"
+        app:showAsAction="never" />
+
+</menu>

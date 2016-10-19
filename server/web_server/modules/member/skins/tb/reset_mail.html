@@ -1,0 +1,35 @@
+<include target="./common_header.html" />
+	<form action="./" method="post" class="form">
+		<fieldset>
+			<legend>{$lang->cmd_resend_auth_mail}</legend>
+			<input type="hidden" name="module" value="member" />
+			<input type="hidden" name="act" value="procMemberResendAuthMail" />
+			<input type="hidden" name="email_address" value="{$memberInfo->email_address}" />
+			<div class="control-group">
+				<div class="controls">
+					<input type="text" readonly="readonly" disabled="disabled" value="{$memberInfo->email_address}"/> 
+					<p class="help-block">{sprintf($lang->about_reset_auth_mail, $memberInfo->email_address)}</p>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">{$lang->cmd_resend_auth_mail}</button>
+			</div>
+		</fieldset>
+	</form>
+	<form ruleset="resetAuthMail" action="./" method="post" class="form">
+		<fieldset>
+			<legend>{$lang->cmd_modify_new_auth_email_address}</legend>
+			<input type="hidden" name="module" value="member" />
+			<input type="hidden" name="act" value="procMemberResetAuthMail" />
+			<div class="control-group">
+				<div class="controls">
+					<input type="text" id="email_address" name="email_address" value="" />
+					<p class="help-block">{$lang->about_reset_auth_mail_submit}</p>
+				</div>
+			</div>		
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">{$lang->cmd_send_auth_new_emaill_address}</button>
+			</div>
+		</fieldset>
+	</form>
+<include target="./common_footer.html" />

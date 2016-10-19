@@ -1,0 +1,9 @@
+.xm .page-header{padding-bottom:9px}
+.xm .page-header h2{font-size:19.5px;line-height:22px;color:#333;font-weight:normal}
+.xm .page-header h2 small{font-size:13.5px;color:#999;}
+
+.xm .pagination{text-align:center}
+.xm .table tr th em{font-style:normal}
+
+.xm select[name='find_account_question'] + br{display:none}
+.xm select[name='find_account_question']{margin-right:5px;}

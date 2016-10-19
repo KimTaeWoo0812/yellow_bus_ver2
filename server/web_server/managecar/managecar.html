@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko"  xml:lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" Content="text/html; charset=utf-8" />
+	</head>
+	
+
+<?php
+ define('__XE__', true);
+ require_once('C:\inetpub\wwwroot\xe\config\config.inc.php');
+ $oContext = &Context::getInstance();
+ $oContext->init();
+
+
+	//url 로 직접 불러오는것을 방지
+//if(!strstr($_SERVER['HTTP_REFERER'],$_SERVER['SERVER_NAME'])&& !strstr($_SERVER['HTTP_REFERER'],'out_excel.php')) {
+//	echo '경고! 당신은 정상적인 방법으로 접근하지 않았다. 메인 페이지로 돌아간 다음, 올바른 방법으로 다시 시도해라.';
+//	exit;	
+//}
+
+  
+  
+$logged_info = Context::get('logged_info'); 
+if($logged_info)
+{
+	$my_member_srl = $logged_info->member_srl;
+	echo $my_member_srl;
+} else {
+	//로그인이 되지 않았을때
+	echo 로그인하셈;
+}
+	
+$info = array(
+"host" => "localhost",
+"user" => "root",
+"pass" => "apmsetup",
+"db" => "test",
+"table" => "xe_stud_log",
+"member_srl" => $my_member_srl,
+);
+
+$con = mysql_connect($info[host], $info[user], $info[pass]) || die(mysql_error());
+mysql_query("set names utf8");
+$con_db = mysql_select_db($info[db]) || die(mysql_error());
+ 
+?>
+  
+
+
+	<body>
+
+		<table width="100%", border=1>
+			<tr align=center>
+  
+<?php
+	echo "<th>"."학원"."</th>";
+	echo "<th>"."차이름"."</th>";
+	echo "<th>"."운행상태"."</th>";
+ 
+/* 		비효율적 쿼리문
+	//id값이 $info[email_address]인 id를 xe_stud_log에서 찾아서 $result에 넣는다.
+	$get_group_srl = mysql_query("SELECT group_srl FROM xe_member_group_member WHERE xe_member_group_member.member_srl = '$my_member_srl'");
+	$result_get_group_srl = mysql_result($get_group_srl,0,0); 
+	echo result_get_group_srl;
+	$get_group_name = mysql_query("SELECT title FROM xe_member_group WHERE xe_member_group.group_srl = '$result_get_group_srl'");
+	$result_get_group_name = mysql_result($get_group_name,0,0);
+	echo $result_get_group_name; */
+	
+		//새로운 로직
+	foreach($logged_info->group_list as $key_group=>$val_group){
+		$result_get_group_srl = $key_group;
+		$result_get_group_name = $val_group;
+	}
+	//echo $my_group_srl;
+	//echo $my_group_name;
+	
+	$result = mysql_query("SELECT * FROM car WHERE car.school = '$result_get_group_name'");
+	
+	while($output_row = mysql_fetch_array($result, MYSQL_BOTH)){
+		$sh_count_row++;
+		$school_id = $output_row['school'];
+		$car_id = $output_row['carName'];
+		echo"<tr>";
+		echo "<th>".$output_row['school']."</th>";
+		echo "<th>".$output_row['carName']."</th>";
+		echo "<th>".$output_row['driving']."</th>";
+		/*echo "<th width=20%> <input type='submit'  name='$car_id' value='삭제'> </th>";*/
+		
+		echo "<th width=20%><form  method="."post".">";
+		echo "<input type = "."hidden"." name = "."delGroupNAME"." value = ".$school_id.">";
+		echo "<input type = "."hidden"." name = "."delCarNAME"." value = ".$car_id.">";
+		echo " <input type='submit' name=".$school_id."_".$car_id." value='차량 삭제'>";
+		echo "</form></th>";
+		echo "</tr>";
+?>
+
+
+
+<?php
+		if(isset($_POST[$school_id.'_'.$car_id])){
+			$con = mysql_connect("localhost","root","apmsetup");
+			if(!$con){
+				die("DB Cannot connect: " . mysql_error());
+			}
+			
+			mysql_select_db("car",$con);
+			
+			$sql = "DELETE FROM car WHERE car.school='$_POST[delGroupNAME]' AND car.carName='$_POST[delCarNAME]'";
+			echo $sql;
+			mysql_query($sql,$con);
+			
+			mysql_close($con);
+			echo "<meta http-equiv='refresh' content='0'>";
+		}
+	} 
+     
+?>
+		</table>
+		
+		<form  method="post">
+			<table width="100%" border="1">
+				<tr>
+				차량 추가하기
+				</tr>
+				<tr>
+					<th>차량 이름</th>
+					<input type = "hidden" name = "txtGroupNAME" value = "<?php echo $result_get_group_name;?>">
+					<td><input type="text" name="txtCarNAME" ></td>
+					<input type = "hidden" name = "txtCarDRIVING" value = "0">
+					<td><input type="submit" name="submit" value="등록"></td>
+				</tr>
+			</table>		  
+		</form>
+		
+		<?php
+		if(isset($_POST['submit'])){
+			$con = mysql_connect("localhost","root","apmsetup");
+			if(!$con){
+				die("DB Cannot connect: " . mysql_error());
+			}
+			
+			mysql_select_db("car",$con);
+			
+			$sql = "INSERT INTO car (school, carName, driving) VALUES ('$_POST[txtGroupNAME]', '$_POST[txtCarNAME]', '$_POST[txtCarDRIVING]')";
+			
+			mysql_query($sql,$con);
+			
+			mysql_close($con);
+			echo "<meta http-equiv='refresh' content='0'>";
+		}
+		?>
+				
+		
+	</body>
+</html>

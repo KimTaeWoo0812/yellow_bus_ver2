@@ -1,0 +1,32 @@
+<query id="getGcmGroups" action="select">
+    <tables>
+        <table name="androidpushapp_gcmregid" alias="gcm" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <query operation="equal" column="member_srl" alias="search">
+            <tables>
+                <table name="member_group_member" alias="m" />
+            </tables>
+            <columns>
+                <column name="member_srl" alias="mem_srl" />
+            </columns>
+            <conditions>
+				<query operation="equal" column="m.group_srl" alias="check">
+					<tables>
+						<table name="module_grants" alias="g" />
+					</tables>
+					<columns>
+						<column name="group_srl" alias="g_srl" />
+					</columns>
+					<conditions>
+						<condition operation="equal" column="g.module_srl" var="module_srl" />
+						<condition operation="equal" column="g.name" var="name" />
+					</conditions>
+				</query>                
+            </conditions>
+        </query>
+    </conditions>	
+</query>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="android">
+		<value xml:lang="ko"><![CDATA[안드로이드 푸시 앱]]></value>
+		<value xml:lang="en"><![CDATA[Android Push App]]></value>		
+	</item>	
+	<item name="android_notice">
+		<value xml:lang="ko"><![CDATA["%s"번째 발송건 : "%s"명 발송 요청 중 "%s"명 발송 성공, "%s"명 에러, "%s"명 중복, "%s"명 삭제]]></value>
+		<value xml:lang="en"><![CDATA[push "%s" : requst-"%s", success-"%s", error-"%s", be dupulicate-"%s", delete-"%s"]]></value>		
+	</item>			
+	<item name="android_delete_all">
+		<value xml:lang="ko"><![CDATA[모두 삭제]]></value>
+		<value xml:lang="en"><![CDATA[delete all]]></value>		
+	</item>
+	<item name="sync_member">
+		<value xml:lang="ko"><![CDATA[동기화된 기기]]></value>
+		<value xml:lang="en"><![CDATA[sync]]></value>		
+	</item>
+	<item name="not_sync_member">
+		<value xml:lang="ko"><![CDATA[동기화 되지 않은 기기]]></value>
+		<value xml:lang="en"><![CDATA[not sync]></value>		
+	</item>
+	<item name="see_all">
+		<value xml:lang="ko"><![CDATA[전체보기]]></value>
+		<value xml:lang="en"><![CDATA[All]]></value>		
+	</item>
+	<item name="selected_manage">
+		<value xml:lang="ko"><![CDATA[선택기기에 푸시 알림 보내기]]></value>
+		<value xml:lang="en"><![CDATA[PUSH]]></value>		
+	</item>
+</lang>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    style="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+    android:id="@+id/toplayout">
+
+    <FrameLayout
+        android:id="@+id/customViewContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:id="@+id/middlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomlayout"
+        >
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            />
+
+        <ProgressBar
+            android:id="@+id/progressbar_Horizontal"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:max="100"
+            android:maxHeight="5dp"
+            android:minHeight="5dp"
+            android:progressDrawable="@drawable/progress_loading" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottomlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="1px" android:background="#ff4bac88">
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#fff4f3f7"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/btnback"
+                    android:src="@drawable/back"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="18dp"
+                    android:scaleType="fitXY"
+                    android:background="@null" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/btnforward"
+                    android:src="@drawable/forward"
+                    android:layout_marginRight="18dp"
+                    android:scaleType="fitXY"
+                    android:background="@null" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/gohome"
+                    android:src="@drawable/gohome"
+                    android:layout_marginRight="18dp"
+                    android:scaleType="fitXY"
+                    android:background="@null" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/btnrefresh"
+                    android:src="@drawable/refresh"
+                    android:layout_marginRight="18dp"
+                    android:scaleType="fitXY"
+                    android:background="@null" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/btnlogin"
+                    android:src="@drawable/login"
+                    android:layout_marginRight="18dp"
+                    android:scaleType="fitXY"
+                    android:background="@null" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/setting"
+                    android:src="@drawable/setting"
+                    android:layout_marginRight="18dp"
+                    android:scaleType="fitXY"
+                    android:background="@null" />
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/finish"
+                    android:src="@drawable/finish"
+                    android:scaleType="fitXY"
+                    android:background="@null" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

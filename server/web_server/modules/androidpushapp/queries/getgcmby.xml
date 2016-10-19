@@ -1,0 +1,12 @@
+<query id="getgcmby" action="select">
+    <tables>
+        <table name="androidpushapp_gcmregid" />
+    </tables>	
+    <columns>
+        <column name="*" />
+    </columns>
+	<conditions>
+		<condition operation="equal" column="sort" var="sort" />        
+		<condition operation="equal" column="reg_id" var="reg_id" pipe="and" />		
+    </conditions>
+</query>
